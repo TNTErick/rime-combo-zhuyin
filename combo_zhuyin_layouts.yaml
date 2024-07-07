@@ -1,0 +1,47 @@
+info: |
+  # 暫時留空。
+
+
+gia_layout_options:
+  # 字母表，包含用於並擊的按鍵
+  # 擊鍵雖有先後，形成並擊時，會以字母表順序排列
+  alphabet: 'aqzswxdecfrvgtbhynjum ki,lo.p'
+  # 拼寫運算規則，將一組並擊編碼轉換爲拼音音節
+  algebra:
+    # 先將物理按鍵字符對應到宮保拼音鍵位中的拼音字母， TODO
+    - 'xlit|aqzswxdecfrvgtbhynjum ki,lo.p|XXXㄙㄘㄗㄌㄏㄈㄍㄉㄅㄎㄊㄆㄦㄦㄦㄧㄨㄩㄚㄣㄟㄡㄝㄛㄜㄡ|'
+    # 以下根據宮保拼音的鍵位分別變換聲母、韻母部分
+    # 單擊時發送標點符號
+    - xform/^U$/,/
+    - xform/^E$/./
+    # 空格鍵單擊時產生空白
+    - 'xform/^a$/ /'
+    # 特例：以組合鍵[ae]輸入拼音⟨a⟩
+    - xform/^ae$/a/
+    # ⟨er⟩自成音節
+    - xform/^R$/er/
+    # 3x10鍵盤缺少拇指鍵，可用 N 鍵代替空格鍵並擊⟨a⟩
+    - xform/^Re$/a/
+    - xform/R([iuV]?)a?/$1a/
+    # 若不能使用 , . 並擊，可用 P 鍵代替 -u 形成並擊組合 o-u, i+o-u, i-u
+    - xform/Io?W/iU/
+    - xform/o?W/U/
+    # 消除無效按鍵
+    - xform/[XR]+//
+    # 組合聲母
+    - xform/^zf/zh/
+    - xform/^cl/ch/
+    - xform/^fb/m/
+    - xform/^ld/n/
+    - xform/^hg/r/
+    # 特殊配列鍵盤用的組合聲母
+    - xform/^[zs]b/p/
+    - xform/^[cs]d/t/
+    - xform/^sg/k/
+
+use_gia_layout:
+  chord_composer/+:
+    __patch:
+      - gia_layout_options
+      - ia_shared_options
+      - common_options

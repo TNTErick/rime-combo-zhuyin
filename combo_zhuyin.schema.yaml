@@ -53,9 +53,9 @@ chord_composer:
 editor:
   bindings:
     BackSpace: back_syllable
+    Right: next_syllable
+    Left: prev_syllable
     # also should the opposite direction
-    # Left: prev_syllable
-    # Right: next_syllable
 
 speller:
   # 應該要換成注音
