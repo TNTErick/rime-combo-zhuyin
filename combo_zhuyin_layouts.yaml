@@ -12,10 +12,10 @@ gia_layout_options:
     - 'xlit|aqzswxdecfrvgtbhynjum ki,lo.p|XXXㄙㄘㄗㄌㄏㄈㄍㄉㄅㄎㄊㄆㄦㄦㄦㄧㄨㄩㄚㄣㄟㄡㄝㄛㄜㄡ|'
     # 以下根據宮保拼音的鍵位分別變換聲母、韻母部分
     # 單擊時發送標點符號
-    - xform/^U$/,/
-    - xform/^E$/./
+    - xform/^ㄡ$/,/
+    - xform/^ㄜ$/./
     # 空格鍵單擊時產生空白
-    - 'xform/^a$/ /'
+    - 'xform/^ㄚ$/ /'
     # 特例：以組合鍵[ae]輸入拼音⟨a⟩
     - xform/^ae$/a/
     # ⟨er⟩自成音節
